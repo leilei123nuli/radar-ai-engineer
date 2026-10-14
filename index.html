@@ -49,31 +49,36 @@
   .trend-block { border: 1px solid #eef0f6; border-radius: 10px; padding: 4px 16px 14px; margin-bottom: 14px; }
   .trend-date { font-size: 14px; font-weight: 600; color: var(--accent); margin: 12px 0 2px; }
   mark { background: #ffe58f; border-radius: 2px; padding: 0 1px; }
-  /* github 日/周/月榜（结构化榜单总结，样式与 docs/github/view.html 一致） */
-  .gpane .sumbar { display: flex; align-items: center; gap: 8px; background: #f7f8fc; border-radius: 10px; padding: 8px 14px; margin-bottom: 12px; }
-  .gpane .sumbar .t { font-size: 14px; font-weight: 600; color: var(--accent); }
-  .gpane .sumbar .n { color: var(--muted); font-weight: 400; font-size: 13px; }
-  .gpane .sumbar .tg { font-size: 13px; padding: 3px 12px; border-radius: 999px; border: 1px solid #dde2ee; background: #fff; cursor: pointer; color: var(--ink); }
-  .gpane .sumbar .tg:hover { border-color: var(--accent); color: var(--accent); }
-  .gpane .sumbar .tg.active { background: #eef4ff; color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  /* github 日/周/月榜：与 docs/github/view.html 同款（白卡片、蓝表头、方案/统计开关） */
+  .gpane .sumbar { display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 12px; padding: 10px 16px; box-shadow: 0 2px 8px rgba(30,40,80,.07); margin-bottom: 12px; }
+  .gpane .sumbar .t { font-size: 14px; font-weight: 600; color: #3d5afe; }
+  .gpane .sumbar .n { color: #7a8299; font-weight: 400; font-size: 13px; }
+  .gpane .sumbar .tg { font-size: 13px; padding: 4px 14px; border-radius: 999px; border: 1px solid #dde2ee; background: #f7f8fc; cursor: pointer; color: #1a1f36; }
+  .gpane .sumbar .tg:hover { border-color: #3d5afe; color: #3d5afe; }
+  .gpane .sumbar .tg.active { background: #eef4ff; color: #3d5afe; border-color: #3d5afe; font-weight: 600; }
   .gpane .sumbar .tg:first-of-type { margin-left: auto; }
-  .gpane .tw { overflow-x: auto; }
+  .gpane .tw { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,40,80,.07); padding: 6px 12px 10px; margin-bottom: 12px; overflow-x: auto; }
   .gpane table.sum, .gpane table.stat { border-collapse: collapse; width: 100%; font-size: 13px; margin: 10px 0; }
-  .gpane .sum th, .gpane .stat th { background: #f4f6fb; padding: 6px 10px; text-align: left; white-space: nowrap; border: 1px solid #e3e7f0; }
+  .gpane .sum th, .gpane .stat th { background: #3d5afe; color: #fff; padding: 6px 10px; text-align: left; white-space: nowrap; border: 1px solid #e3e7f0; }
   .gpane .sum td, .gpane .stat td { border: 1px solid #e3e7f0; padding: 6px 10px; vertical-align: top; line-height: 1.6; }
-  .gpane .sum tr:nth-child(4n) td, .gpane .stat tr:nth-child(even) td { background: #fafbfd; }
-  .gpane .sum td.num { color: var(--muted); white-space: nowrap; }
+  .gpane .sum tr:nth-child(4n) td, .gpane .stat tr:nth-child(even) td { background: #f6f8ff; }
+  .gpane .sum td.num { color: #7a8299; white-space: nowrap; }
   .gpane .sum td.pname { white-space: nowrap; font-weight: 600; }
-  .gpane .sum td.pname a { color: var(--ink); text-decoration: none; }
-  .gpane .sum td.pname a:hover { color: var(--accent); text-decoration: underline; }
+  .gpane .sum td.pname a { color: #1a1f36; text-decoration: none; }
+  .gpane .sum td.pname a:hover { color: #3d5afe; text-decoration: underline; }
   .gpane .sum td.heat { white-space: nowrap; font-weight: 600; color: #b3541e; }
   .gpane .sum td.cats { white-space: nowrap; color: #454c66; font-size: 12px; }
   .gpane tr.appr { display: none; }
   .gpane.show-appr tr.appr { display: table-row; }
   .gpane tr.appr td { background: #fbfcff; color: #454c66; font-size: 13px; border-top: 1px dashed #e3e7f0; }
-  .gpane .stats { display: none; }
+  .gpane .stats { display: none; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,40,80,.07); padding: 14px 18px; }
   .gpane.show-stats .stats { display: block; }
-  .gpane .statdim { font-size: 14px; font-weight: 600; border-left: 3px solid var(--accent); padding-left: 8px; margin: 12px 0 6px; }
+  .gpane .statdim { font-size: 14px; font-weight: 600; border-left: 3px solid #3d5afe; padding-left: 8px; margin: 12px 0 6px; }
+  .gpane .statdim:first-child { margin-top: 0; }
+  /* github 榜子页按钮着色，与 view.html 的榜色一致 */
+  .subtab[data-b="日"].active { background: #3d5afe; color: #fff; border-color: #3d5afe; }
+  .subtab[data-b="周"].active { background: #00a152; color: #fff; border-color: #00a152; }
+  .subtab[data-b="月"].active { background: #f29400; color: #fff; border-color: #f29400; }
   .hidden-by-search { display: none !important; }
   .search-count { font-size: 12px; color: var(--muted); }
   .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 26px; }
@@ -253,7 +258,7 @@ function renderPanel(){
   document.getElementById('panel').innerHTML = `
     <div class="card-head">
       <div class="title">${ch.name}${dateLabel}</div>
-      <a class="view-link" href="${ch.view}">查看完整看板 →</a>
+      ${isGh ? '' : `<a class="view-link" href="${ch.view}">查看完整看板 →</a>`}
     </div>
     <div class="subtabs">${subtabs}</div>
     <div id="content">${body}</div>`;
