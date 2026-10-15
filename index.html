@@ -277,8 +277,8 @@ const HF_LABELS = { models: '模型列表', papers: '论文列表', spaces: 'Spa
 /* 排序按钮：第一个为默认，与 docs/huggingface/<栏目>/view.html 一致 */
 const HF_SORTS = {
   models: [['rank', '按榜单顺序'], ['heat', '按热度']],
-  papers: [['board', '按日榜'], ['heat', '按热度']],
-  spaces: [['heat', '按热度'], ['created', '按创建日期'], ['likes', '按喜欢']],
+  papers: [['board', '按日榜'], ['month', '按月榜'], ['heat', '按热度']],
+  spaces: [['heat', '按热度'], ['created', '按创建日期'], ['likes', '按喜欢'], ['links', '按关联模型数']],
 };
 function hfSorted(sec, items){
   const mode = state.hfSort[sec] || HF_SORTS[sec][0][0];
@@ -290,17 +290,21 @@ function hfSorted(sec, items){
     if (mode === 'heat'){
       arr.sort((a, b) => ((b.heat && b.heat.upvotes) || 0) - ((a.heat && a.heat.upvotes) || 0));
     } else {
-      const dayRank = it => {
-        const d = ((it.heat && it.heat.boards) || []).find(b => b.period === '日');
+      const period = mode === 'month' ? '月' : '日';
+      const boardRank = it => {
+        const d = ((it.heat && it.heat.boards) || []).find(b => b.period === period);
         return d ? d.rank : 1e9;
       };
-      arr.sort((a, b) => dayRank(a) - dayRank(b));
+      arr.sort((a, b) => boardRank(a) - boardRank(b));
     }
   } else if (mode === 'created'){
     arr.sort((a, b) => String((b.info || {}).created_at || '')
       .localeCompare(String((a.info || {}).created_at || '')));
   } else if (mode === 'likes'){
     arr.sort((a, b) => likes(b) - likes(a));
+  } else if (mode === 'links'){
+    arr.sort((a, b) => (((b.info || {}).linked_models) || 0)
+                     - (((a.info || {}).linked_models) || 0));
   } else {
     arr.sort((a, b) => ((a.heat && a.heat.rank) || 1e9) - ((b.heat && b.heat.rank) || 1e9));
   }
