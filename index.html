@@ -195,8 +195,7 @@ function renderMd(md){
       const buf = [line]; i++;
       while (i < lines.length && !/^<\/details>/.test(lines[i])){ buf.push(lines[i]); i++; }
       if (i < lines.length){ buf.push(lines[i]); i++; }
-      html += buf.join('
-');
+      html += buf.join('\n');
       continue;
     }
     if (/^\s*\|/.test(line)){
