@@ -461,8 +461,9 @@ function hfTableHtml(ch){
       if (inf.description || meta) det += drow('简介', (inf.description || '') + (meta ? `　${meta}` : ''));
       const names = inf.linked_model_names || [];
       if (names.length)
-        det += drowh('关联模型', names.map(n =>
-          `<a href="https://huggingface.co/${esc(n)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('、'));
+        det += drowh('关联模型', names.slice(0, 5).map(n =>
+          `<a href="https://huggingface.co/${esc(n)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('、')
+          + (names.length > 5 ? ` 等 ${names.length} 个` : ''));
     }
     return `<tr class="item${i % 2 ? ' alt' : ''}">${cells}</tr>` + det;
   }).join('');
