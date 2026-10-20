@@ -299,9 +299,7 @@ function renderDateControl(){
 }
 function hasAlert(c){ return !!c.alert || (c.subs || []).some(s => s.alert); }
 function alertHtml(text){
-  const body = text.split('
-').filter(l => !l.startsWith('# ')).join('
-');
+  const body = text.split('\n').filter(l => !l.startsWith('# ')).join('\n');
   const n = (text.match(/^- /gm) || []).length;
   return `<details class="alert"><summary>⚠️ 错误信息${n ? `（${n} 条）` : ''}，点击展开</summary><div class="md">${renderMd(body)}</div></details>`;
 }
