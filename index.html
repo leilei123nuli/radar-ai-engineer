@@ -151,6 +151,9 @@
   /* arxivs 图谱看板内联片段：深色区铺满卡片，meta 行补内边距（其余样式在片段内，均限定 #axboard） */
   #axboard { border-radius: 10px; overflow: hidden; }
   #axboard > .meta { padding: 14px 20px 10px; border-bottom: 1px solid #2a2e3d; }
+  /* 外层 .bar/.card 的白底、内边距、阴影会渗进片段同名类，这里压掉 */
+  #axboard .bar { background: transparent; border: none; border-radius: 0; padding: 0; box-shadow: none; }
+  #axboard .card { box-shadow: none; }
 </style>
 </head>
 <body>
